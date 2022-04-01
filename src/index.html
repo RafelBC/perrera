@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/output.css">
+    <script src="https://kit.fontawesome.com/95c253c17a.js" crossorigin="anonymous"></script>    
+    <title>Inicio</title>
+</head>
+<body class="background">
+    <div><!--DIV PADRE-->
+        <nav class="header">
+            <div class="header__brand">
+              <img src="./logo-white-00.png" alt="Logo Perrera" width="54" height="54">
+              <span class="header__brand__texto"><a href="./index.html">Perrera Alaró</a></span>
+            </div>
+            <div class="header__menu">
+              <div>
+                <a href="./ingresar-perro.html" class="header__menu__link">
+                  Ingresar perro
+                </a>
+                <a href="./adoptar-perro.html" class="header__menu__link">
+                  Adoptar perro
+                </a>
+              </div>
+            </div>
+          </nav>
+        <div class="flex">
+            <div class="w-1/3">
+                    <div>
+                        <div class="logo-section">
+                            <img class="logo-section__logo" src="./logo-green-00.png" alt="Logo Perrera">
+                            <h1 class="logo-section__text">Perrera Alaró</h1>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="search-section">
+                            <input class="search-section__search-bar" type="search" name="name-search" id="search-textbox"
+                                placeholder="Perro a buscar">
+                            <button class="search-section__search-button">Buscar</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="card-adopted-section-home">
+                <h2 class="section-titles-pages">Últimos perros adoptados</h2>
+                <div class="flex" id="seccion-perros-adoptados">
+                    <div id="ficha-perro-adoptado">
+                        <div class="ficha-adoptados">
+                            <div class="ficha__image">
+                                <div id="foto-perro-adoptado-00"></div>
+                            </div>
+                            <h1 class="ficha__title" id="nombre-perro-ficha-adoptado-00"></h1>
+                            <div class="flex">
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Edad: </p>
+                                <p class="ficha__text" id="edad-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text"> año/s</p>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Peso: </p>
+                                <p class="ficha__text" id="peso-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text"> kilo/s</p>
+                            </div>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Raza: </p>
+                                <p class="ficha__text" id="raza-perro-ficha-adoptado-00"></p>
+                            </div>
+                            <div class="ficha__secciones-home">
+                                <p class="ficha__text ficha__text--static">Fecha de adopción: </p>
+                                <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Adoptado por: </p>
+                                <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-section-home">
+            <h2 class="section-titles-pages">Perros disponibles para la adopción</h2>
+            <div class="card-section-home" id="seccion-perros-disponibles-adopcion">
+                <div id="ficha-perro-disponible-adopcion">
+                    <div class="ficha-adoptados">
+                        <div class="ficha__image">
+                            <div id="foto-perro-disponible-adopcion-00"></div>
+                        </div>
+                        <h1 class="ficha__title" id="nombre-perro-ficha-disponible-adopcion-00"></h1>
+                        <div class="flex">
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Edad: </p>
+                                <p class="ficha__text" id="edad-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text"> año/s</p>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Peso: </p>
+                                <p class="ficha__text" id="peso-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text"> kilo/s</p>
+                            </div>
+                        </div>
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Raza: </p>
+                            <p class="ficha__text" id="raza-perro-ficha-disponible-adopcion-00"></p>
+                        </div>
+                        <div class="ficha__secciones-home">
+                            <p class="ficha__text ficha__text--static">Fecha de ingreso: </p>
+                            <p class="ficha__text" id="fecha-ingreso-perro-ficha-disponible-adopcion-00"></p>
+                        </div>
+                        <div class="ficha__button-section">
+                            <button class="ficha__button-section__button" id="adoptar-perro">Adoptar perro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-golden-retriever-01.jpeg" alt="Golden Retriever">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Truc</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-mars"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">2</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Golden Retriever</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--yes"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-beagle-01.jpeg" alt="Beagle">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Toby</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-mars"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">1</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Beagle</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--yes"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-border-collie-01.jpeg" alt="Border Collie">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Lamby</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-venus"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">3</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Border Collie</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--no"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-brako-de-weimar-01.jpeg" alt="Brako de Weimar">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Brusca</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-venus"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">3</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Brako de Weimar</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--yes"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-labrador-01.jpeg" alt="Labrador">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Trosky</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-mars"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">3,5</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Labrador</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--yes"></span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__image-content">
+                    <img class="card__image-content__image" src="./perro-rough-collie-01.jpeg" alt="Rough Collie">
+                </div>
+                <div class="card__text-content">
+                    <div class="card__text-content__title">Lassie</div>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__feature-gender">
+                        <i class="fa-solid fa-venus"></i>
+                    </span>
+                    <div class="card__features-content__feature-years">
+                        <div class="card__features-content__feature-years__number">4</div>
+                        <div class="card__features-content__feature-years__text">años</div>
+                    </div>
+                    <span class="card__features-content__feature-breed">Rough Collie</span>
+                </div>
+                <div class="flex">
+                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
+                    <span class="card__features-content__adoption-boolean--no"></span>
+                </div>
+            </div>-->
+        </div>
+    </div><!--FIN DIV PADRE-->
+    <footer class="footer">
+        <p class="footer__text">&#169 2021 Rafel Bibiloni Coll</p>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

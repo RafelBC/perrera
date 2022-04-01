@@ -1,0 +1,328 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background {
+    @apply min-h-screen bg-gray-200 flex flex-col;
+}
+
+/*HEADER----------------------------------------------------------------------------------------------------*/
+
+.header {
+    @apply flex items-center justify-between flex-wrap bg-green-800 p-6;
+}
+
+.header__brand {
+    @apply flex items-center flex-shrink-0 text-white mr-6;
+}
+
+.header__brand__texto {
+    @apply font-semibold text-xl tracking-tight mx-2;
+}
+
+.header__menu {
+    @apply w-full block flex-grow lg:flex lg:items-center lg:w-auto;
+}
+
+.header__menu__link {
+    @apply block mt-4 text-sm lg:flex-grow lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4;
+}
+
+/*TEXT----------------------------------------------------------------------------------------------------*/
+
+.titles-pages {
+    @apply text-green-800 text-center font-bold text-3xl my-5;
+}
+
+.section-titles-pages {
+    @apply text-green-800 font-bold text-2xl mx-2 my-5;
+}
+
+/*LOGO----------------------------------------------------------------------------------------------------*/
+
+.logo-section {
+    @apply relative h-96 mt-14 mx-8 flex justify-center;
+}
+
+.logo-section__logo {
+    @apply absolute w-72 h-72 opacity-60;
+}
+
+.logo-section__text {
+    @apply absolute text-green-900 opacity-90 text-center font-bold text-3xl bottom-10;
+}
+
+/*SEARCH----------------------------------------------------------------------------------------------------*/
+
+.search-section {
+    @apply flex justify-center items-center h-16 my-2 mx-8;
+}
+
+.search-section__search-bar {
+    @apply shadow rounded w-64 ml-4 py-2 px-3 text-gray-700;
+}
+
+.search-section__search-button {
+    @apply bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 mx-4 rounded focus:outline-none;
+}
+
+/*CARDS-LAST-ADOPTED---------------------------------------------------------------------------------------*/
+
+.card-adopted-section-home {
+    @apply flex flex-col w-2/3 flex-nowrap mx-4 mt-4 overflow-x-auto overscroll-y-none;
+}
+
+.card-adopted-section-adoption {
+    @apply flex flex-col w-full flex-nowrap mx-4 my-4 overflow-x-auto overscroll-y-none;
+}
+
+/*CARDS----------------------------------------------------------------------------------------------------*/
+
+.adoption-section-home {
+    @apply flex flex-col ml-6;
+}
+
+.adoption-section-adoption {
+    @apply flex flex-col ml-4;
+}
+
+.card-section-home {
+    @apply flex flex-nowrap mt-4 mb-8 overflow-x-auto overscroll-y-none;
+}
+
+.card-section-adoption {
+    @apply flex flex-nowrap ml-4 mt-8 overflow-x-auto overscroll-y-none;
+}
+
+.card {
+    @apply w-80 rounded shadow-lg mx-2 bg-white;
+}
+
+.card__image-content {
+    @apply w-80 h-52 overflow-hidden rounded-t;
+}
+
+.card__image-content__image {
+    @apply w-full h-52 object-cover;
+}
+
+.card__text-content {
+    @apply bg-green-800 px-6 pb-1 -mt-12 opacity-80;
+}
+
+.card__text-content__title {
+    @apply w-full text-center bg-green-800 text-white font-bold text-xl py-2;
+}
+
+.card__features-content {
+    @apply px-6 pt-4 pb-2;
+}
+
+.card__features-content__feature-gender {
+    @apply w-1/4 h-14 bg-white text-2xl border-r-2 border-r-stone-100 text-gray-700 text-center py-3;
+}
+
+.card__features-content__feature-years {
+    @apply w-1/4 h-14 bg-white;
+}
+
+.card__features-content__feature-years__text {
+    @apply bg-white text-xs text-gray-700 text-center;
+}
+
+.card__features-content__feature-years__number {
+    @apply bg-white text-xl font-semibold text-gray-700 text-center pt-1;
+}
+
+.card__features-content__feature-breed {
+    @apply w-2/4 h-14 bg-white text-sm border-l-2 border-l-stone-100 text-gray-700 text-center py-4;
+}
+
+.card__features-content__adoption-text {
+    @apply w-5/6 h-7 bg-white rounded text-sm text-gray-700 text-center py-1;
+}
+
+.card__features-content__adoption-boolean--yes {
+    @apply w-1/6 h-7 rounded shadow-inner bg-green-500 border-2 border-green-600;
+}
+
+.card__features-content__adoption-boolean--no {
+    @apply w-1/6 h-7 rounded shadow-inner bg-red-500 border-2 border-red-600;
+}
+
+.card__features-content__adoption-question {
+    @apply w-80 h-16 bg-white rounded py-1 flex justify-center;
+}
+
+.card__features-content__adoption-question__button {
+    @apply bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 my-2 mx-4 rounded focus:outline-none;
+}
+
+/*FORM-INPUT-------------------------------------------------------------------------------------------------*/
+.form-section {
+    @apply w-1/2 h-full flex justify-end items-center px-8;
+}
+
+.form {
+    @apply w-1/2 rounded shadow-lg mt-28 px-8 py-8 bg-white;
+}
+
+.form__title {
+    @apply font-bold text-center text-2xl text-green-800 py-2;
+}
+
+.form__input-line {
+    @apply flex flex-col py-3 mx-4;
+}
+
+.form__label-text {
+    @apply text-base text-gray-700 mx-1 py-1;
+}
+
+.form__text-box {
+    @apply shadow rounded w-64 mx-1 py-1 px-3 border border-gray-300 text-gray-700 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+.form__number-box {
+    @apply shadow rounded w-16 mx-1 py-1 px-3 border border-gray-300 text-gray-700 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+.form__button-section {
+    @apply flex justify-center;
+}
+
+.form__button-section__button {
+    @apply bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 my-4 mx-4 rounded focus:outline-none;
+}
+
+.form__select {
+    @apply shadow rounded w-64 mx-1 py-1 px-3 text-gray-700 leading-tight border border-gray-300 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+.form__text-error {
+    @apply hidden mx-1 py-1 text-sm text-red-600;
+}
+
+.form__text-error--activo {
+    @apply block;
+}
+
+
+/*MODAL----------------------------------------------------------------------------------------------------*/
+
+.modal {
+    @apply overflow-y-auto overflow-x-hidden fixed right-0 top-1/4 left-1/4 z-50 justify-center items-center;
+}
+
+.modal__form {
+    @apply overflow-y-auto overflow-x-hidden fixed top-1/4 left-1/4 z-50 justify-center items-center;
+}
+
+.modal__01 {
+    @apply relative px-4 w-full max-w-md h-full md:h-auto;
+}
+
+.modal__form__01 {
+    @apply relative px-4 w-full h-full md:h-auto;
+}
+
+.modal__content {
+    @apply relative bg-white rounded-lg shadow dark:bg-gray-700;
+}
+
+.modal__header {
+    @apply flex justify-end p-2;
+}
+
+.modal__header__button {
+    @apply text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white;
+}
+
+.modal__body {
+    @apply p-6 pt-0 text-center;
+}
+
+.modal__body__title {
+    @apply mb-5 text-lg font-normal text-gray-500 dark:text-gray-400;
+}
+
+.modal__body__button {
+    @apply text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:ring-green-600 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mt-3 mr-2;
+}
+
+.modal__form__line {
+    @apply flex flex-col py-3 mx-4;
+}
+
+.form__text-box__city {
+    @apply shadow rounded w-44 mx-1 py-1 px-3 border border-gray-300 text-gray-700 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+.form__text-box__address {
+    @apply shadow rounded w-96 mx-1 py-1 px-3 border border-gray-300 text-gray-700 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+.form__number-box__CP {
+    @apply shadow rounded w-24 mx-1 py-1 px-3 border border-gray-300 text-gray-700 focus:outline-none focus:border-sky-100 focus:ring-1 focus:ring-sky-100 focus:invalid:border-red-800 focus:invalid:ring-red-800;
+}
+
+
+/*FICHA----------------------------------------------------------------------------------------------------*/
+
+.ficha-section {
+    @apply w-1/2 h-full flex justify-start items-center px-8 mt-28;
+}
+
+.ficha {
+    @apply w-1/2 rounded shadow-lg px-8 py-8 bg-white;
+}
+
+.ficha-adoptados {
+    @apply w-96 rounded shadow-lg px-8 py-8 mx-2 bg-white;
+}
+
+.ficha__image {
+    @apply w-full h-52 overflow-hidden rounded-t flex justify-center;
+}
+
+.ficha__image__content {
+    @apply w-full h-52 object-cover rounded;
+}
+
+.ficha__title {
+    @apply font-bold text-center text-2xl text-green-800 pt-3;
+}
+
+.ficha__secciones {
+    @apply flex py-2.5 mx-4;
+}
+
+.ficha__secciones-home {
+    @apply py-2.5 mx-4;
+}
+
+.ficha__text {
+    @apply text-base text-gray-700 mx-1 py-0.5;
+}
+
+.ficha__text--static {
+    @apply font-semibold;
+}
+
+.ficha__button-section {
+    @apply flex justify-center;
+}
+
+.ficha__button-section__button {
+    @apply bg-green-800 hover:bg-green-900 text-white font-bold py-2.5 px-4 my-4 mx-4 rounded focus:outline-none;
+}
+
+/*FOOTER----------------------------------------------------------------------------------------------------*/
+
+.footer {
+    @apply h-20 w-screen mt-auto bg-green-800 flex flex-row-reverse;
+}
+
+.footer__text {
+    @apply text-white pt-10 mr-8;
+}

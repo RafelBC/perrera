@@ -1,0 +1,145 @@
+{
+  "dogs": [
+    {
+      "nombre": "Bosco",
+      "edad": "0.2",
+      "raza": "retriever golden",
+      "peso": "0.9",
+      "imagen": "https://images.dog.ceo/breeds/retriever-golden/n02099601_142.jpg",
+      "fechaIngreso": "16-1-2022 12:59:14",
+      "estadoAdopcion": true,
+      "fechaAdopcion": "15-3-2022 13:1:52",
+      "dueño": {},
+      "id": 1
+    },
+    {
+      "name": "Boira",
+      "id": 2
+    },
+    {
+      "name": "Boira",
+      "id": 3
+    },
+    {
+      "nombre": "Brusca",
+      "edad": "5",
+      "raza": "weimaraner",
+      "peso": "7",
+      "imagen": "https://images.dog.ceo/breeds/weimaraner/n02092339_1100.jpg",
+      "fechaIngreso": "17-1-2022 13:5:18",
+      "estadoAdopcion": true,
+      "fechaAdopcion": "14-3-2022 13:1:52",
+      "dueño": {},
+      "id": 4
+    },
+    {
+      "nombre": "Daisy",
+      "edad": "5",
+      "raza": "germanshepherd",
+      "peso": "8",
+      "imagen": "https://images.dog.ceo/breeds/germanshepherd/n02106662_24577.jpg",
+      "fechaIngreso": "17-3-2022 13:22:31",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 5
+    },
+    {
+      "nombre": "Pongo",
+      "edad": "5",
+      "raza": "dalmatian",
+      "peso": "12",
+      "imagen": "https://images.dog.ceo/breeds/dalmatian/cooper1.jpg",
+      "fechaIngreso": "17-3-2022 15:16:59",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 6
+    },
+    {
+      "nombre": "Milu",
+      "edad": "5.6",
+      "raza": "terrier fox",
+      "peso": "7.8",
+      "imagen": "https://images.dog.ceo/breeds/terrier-fox/n02095314_3240.jpg",
+      "fechaIngreso": "22-3-2022 16:35:53",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 7
+    },
+    {
+      "nombre": "sdaf",
+      "edad": "0.1",
+      "raza": "affenpinscher",
+      "peso": "0.1",
+      "imagen": "https://images.dog.ceo/breeds/affenpinscher/n02110627_13221.jpg",
+      "fechaIngreso": "22-3-2022 17:14:11",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 8
+    },
+    {
+      "nombre": "sdaffdf",
+      "edad": "0.1",
+      "raza": "beagle",
+      "peso": "0.2",
+      "imagen": "https://images.dog.ceo/breeds/beagle/n02088364_1384.jpg",
+      "fechaIngreso": "22-3-2022 17:17:14",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 9
+    },
+    {
+      "nombre": "Addaya",
+      "edad": "0.4",
+      "raza": "retriever golden",
+      "peso": "1.5",
+      "imagen": "https://images.dog.ceo/breeds/retriever-golden/n02099601_7588.jpg",
+      "fechaIngreso": "24-3-2022 11:45:26",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 10
+    },
+    {
+      "nombre": "Pluto",
+      "edad": "13",
+      "raza": "hound blood",
+      "peso": "11",
+      "imagen": "https://images.dog.ceo/breeds/hound-blood/n02088466_9691.jpg",
+      "fechaIngreso": "24-3-2022 17:25:25",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 11
+    },
+    {
+      "nombre": "Mel",
+      "edad": "0.4",
+      "raza": "retriever golden",
+      "peso": "0.8",
+      "imagen": "https://images.dog.ceo/breeds/retriever-golden/n02099601_1768.jpg",
+      "fechaIngreso": "27-3-2022 20:49:54",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 12
+    },
+    {
+      "nombre": "Lamby",
+      "edad": "2",
+      "raza": "collie border",
+      "peso": "8",
+      "imagen": "https://images.dog.ceo/breeds/collie-border/n02106166_731.jpg",
+      "fechaIngreso": "31-3-2022 11:27:48",
+      "estadoAdopcion": false,
+      "fechaAdopcion": "",
+      "dueño": {},
+      "id": 13
+    }
+  ],
+  "users": []
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/output.css">
+    <script src="https://kit.fontawesome.com/95c253c17a.js" crossorigin="anonymous"></script>
+    <title>Adoptar perro</title>
+</head>
+
+<body class="background">
+    <div><!--DIV PADRE-->
+        <nav class="header">
+            <div class="header__brand">
+                <img src="./logo-white-00.png" alt="Logo Perrera" width="54" height="54">
+                <span class="header__brand__texto"><a href="./index.html">Perrera Alaró</a></span>
+            </div>
+            <div class="header__menu">
+                <div>
+                    <a href="./ingresar-perro.html" class="header__menu__link">
+                        Ingresar perro
+                    </a>
+                    <a href="./adoptar-perro.html" class="header__menu__link">
+                        Adoptar perro
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!--PERROS PARA ADOPTAR////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <h1 class="titles-pages">Adoptar un perro</h1>
+        <div class="adoption-section-adoption">
+            <div class="card-section-home" id="seccion-perros-disponibles-adopcion">
+                <div id="ficha-perro-disponible-adopcion">
+                    <div class="ficha-adoptados">
+                        <span class="hidden" id="identificador"></span>
+                        <div class="ficha__image">
+                            <div id="foto-perro-disponible-adopcion-00"></div>
+                        </div>
+                        <h1 class="ficha__title" id="nombre-perro-ficha-disponible-adopcion-00"></h1>
+                        <div class="flex">
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Edad: </p>
+                                <p class="ficha__text" id="edad-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text"> año/s</p>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Peso: </p>
+                                <p class="ficha__text" id="peso-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text"> kilo/s</p>
+                            </div>
+                        </div>
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Raza: </p>
+                            <p class="ficha__text" id="raza-perro-ficha-disponible-adopcion-00"></p>
+                        </div>
+                        <div class="ficha__secciones-home">
+                            <p class="ficha__text ficha__text--static">Fecha de ingreso: </p>
+                            <p class="ficha__text" id="fecha-ingreso-perro-ficha-disponible-adopcion-00"></p>
+                        </div>
+                        <div class="ficha__button-section">
+                            <button class="ficha__button-section__button" id="adoptar-perro">Adoptar perro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--PERROS YA ADOPTADOS////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="card-adopted-section-adoption">
+            <h2 class="section-titles-pages">Perros que ya han sido adoptados</h2>
+            <div class="flex" id="seccion-perros-adoptados">
+                <div id="ficha-perro-adoptado">
+                    <div class="ficha-adoptados">
+                        <div class="ficha__image">
+                            <div id="foto-perro-adoptado-00"></div>
+                        </div>
+                        <h1 class="ficha__title" id="nombre-perro-ficha-adoptado-00"></h1>
+                        <div class="flex">
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Edad: </p>
+                                <p class="ficha__text" id="edad-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text"> año/s</p>
+                            </div>
+                            <div class="ficha__secciones">
+                                <p class="ficha__text ficha__text--static">Peso: </p>
+                                <p class="ficha__text" id="peso-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text"> kilo/s</p>
+                            </div>
+                        </div>
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Raza: </p>
+                            <p class="ficha__text" id="raza-perro-ficha-adoptado-00"></p>
+                        </div>
+                        <div class="ficha__secciones-home">
+                            <p class="ficha__text ficha__text--static">Fecha de adopción: </p>
+                            <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                        </div>
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Adoptado por: </p>
+                            <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--MODAL ADOPCIÓN-->
+        <div class="hidden modal__form" id="popup-modal-adoption">
+            <form class="modal__form__01">
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <button type="button" class="modal__header__button" id="modal-adoption-header-button"
+                            data-modal-toggle="popup-modal-succes">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal__body" id="formulario-adopcion-dueno">
+                        <h3 class="modal__body__title">Información sobre el dueño/a necesaria para la adopción</h3>
+                        <div class="flex">
+                            <div class="modal__form__line" id="grupo__nombre-dueno">
+                                <div>
+                                    <label class="form__label-text" for="name-owner">Nombre </label>
+                                    <input class="form__text-box" type="text" name="name-owner" id="name-owner"
+                                    placeholder="Jon" required>
+                                </div>
+                                <p class="form__text-error" for="error-name-owner">El campo no puede estar vacío y debe contener
+                                    solo texto.
+                                </p>
+                            </div>
+                            <div class="modal__form__line" id="grupo__apellidos-dueno">
+                                <div>
+                                    <label class="form__label-text" for="last-name-owner">Apellidos </label>
+                                    <input class="form__text-box" type="text" name="last-name-owner" id="last-name-owner"
+                                    placeholder="Doe" required>
+                                </div>
+                                <p class="form__text-error" for="error-last-name-owner">El campo no puede estar vacío y debe contener
+                                    solo texto.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="modal__form__line" id="grupo__telefono-dueno">
+                                <div>
+                                    <label class="form__label-text" for="telephone-owner">Teléfono </label>
+                                    <input class="form__text-box" type="tel" name="telephone-owner" id="telephone-owner" pattern="[0-9]+" maxlength="9"
+                                    placeholder="123 45 67 89" required>
+                                </div>
+                                <p class="form__text-error" for="error-telephone-owner">El campo no puede estar vacío y debe contener
+                                    solo números.
+                                </p>
+                            </div>
+                            <div class="modal__form__line" id="grupo__email-dueno">
+                                <div>
+                                    <label class="form__label-text" for="email-owner">Email </label>
+                                    <input class="form__text-box" type="email" name="email-owner" id="email-owner" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    placeholder="example@example.com" required>
+                                </div>
+                                <p class="form__text-error" for="error-email-owner">El campo no puede estar vacío y debe contener
+                                    una dirección de email.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal__form__line" id="grupo__direccion-dueno">
+                            <div class="flex">
+                                <label class="form__label-text" for="address-owner">Dirección </label>
+                                <input class="form__text-box__address" type="text" name="address-owner" id="address-owner"
+                                placeholder="Calle Wallaby, 42" required>
+                            </div>
+                            <p class="form__text-error" for="error-address-owner">El campo no puede estar vacío.
+                            </p>
+                        </div>
+                        <div class="flex">
+                            <div class="modal__form__line" id="grupo__codigo-postal-dueno">
+                                <div>
+                                    <label class="form__label-text" for="c-p-owner">Código Postal </label>
+                                    <input class="form__number-box__CP" type="number" name="c-p-owner" id="c-p-owner" pattern="[0-9]{5}+"
+                                    placeholder="01234" required>
+                                </div>
+                                <p class="form__text-error" for="error-c-p-owner">El campo no puede estar vacío y debe contener
+                                    solo números.
+                                </p>
+                            </div>
+                            <div class="modal__form__line" id="grupo__ciudad-dueno">
+                                <div>
+                                    <label class="form__label-text" for="city-owner">Ciudad </label>
+                                    <input class="form__text-box__city" type="text" name="city-owner" id="city-owner" pattern="[A-ZÀÈÒÁÉÍÓÚa-zàèòñáéíóú\s]+"
+                                    placeholder="Sidney" required>
+                                </div>
+                                <p class="form__text-error" for="error-city-owner">El campo no puede estar vacío y debe contener
+                                    solo texto.
+                                </p>
+                            </div>
+                        </div>
+                        <button type="submit" class="modal__body__button" id="modal-adoption-body-button">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--FIN DIV PADRE-->
+    <footer class="footer">
+        <p class="footer__text">&#169 2021 Rafel Bibiloni Coll</p>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

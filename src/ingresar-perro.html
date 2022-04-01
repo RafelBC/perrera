@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/output.css">
+    <script src="https://kit.fontawesome.com/95c253c17a.js" crossorigin="anonymous"></script>
+    <title>Ingesar perro</title>
+</head>
+
+<body class="background">
+    <div>
+        <!--DIV PADRE-->
+        <nav class="header">
+            <div class="header__brand">
+                <img src="./logo-white-00.png" alt="Logo Perrera" width="54" height="54">
+                <span class="header__brand__texto"><a href="./index.html">Perrera Alaró</a></span>
+            </div>
+            <div class="header__menu">
+                <div>
+                    <a href="./ingresar-perro.html" class="header__menu__link">
+                        Ingresar perro
+                    </a>
+                    <a href="./adoptar-perro.html" class="header__menu__link">
+                        Adoptar perro
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="flex">
+            <!--FORMULARIO-->
+            <div class="form-section">
+                <form class="form" id="formulario-ingreso-perro">
+                    <h1 class="form__title">Ingresar perro en la perrera</h1>
+                    <!--Grupo con el NOMBRE del perro-->
+                    <div class="form__input-line" id="grupo__nombre">
+                        <label class="form__label-text" for="name-dog">Nombre del perro: </label>
+                        <input class="form__text-box" type="text" name="name-dog" id="name-dog" pattern="[A-Za-z]+"
+                            placeholder="p. ej. 'Ayudante de Santa Claus'" required>
+                        <p class="form__text-error" for="error-name-dog">El campo no puede estar vacío y debe contener
+                            solo texto.
+                        </p>
+                    </div>
+                    <!--Grupo con la EDAD del perro-->
+                    <div class="form__input-line" id="grupo__edad">
+                        <label class="form__label-text" for="age-dog">Edad del perro: </label>
+                        <div class="flex">
+                            <input class="form__number-box" type="number" min="0.1" step="0.1" name="age-dog"
+                                id="age-dog" required>
+                            <label class="form__label-text" for="age-dog"> años. </label>
+                        </div>
+                        <p class="form__text-error" for="error-name-dog">El campo no puede estar vacío y el valor debe
+                            ser superior
+                            a 0.</p>
+                    </div>
+                    <!--Grupo con la RAZA del perro-->
+                    <div class="form__input-line" id="grupo__raza">
+                        <label class="form__label-text" for="breed-dog">Raza: </label>
+                        <select class="form__select" name="breed-selection" id="breed-selection" required>
+                            <option value="default-option">Selecciona la raza del perro</option>
+                        </select>
+                        <p class="form__text-error" for="error-name-dog">Se debe elegir una raza.</p>
+                    </div>
+                    <!--Grupo con el PESO del perro-->
+                    <div class="form__input-line" id="grupo__peso">
+                        <label class="form__label-text" for="weight-dog">Peso del perro: </label>
+                        <div class="flex">
+                            <input class="form__number-box" type="number" min="0.1" step="0.1" name="weight-dog"
+                                id="weight-dog" required>
+                            <label class="form__label-text" for="weight-dog"> kilos.</label>
+                        </div>
+                        <p class="form__text-error" for="error-name-dog">El campo no puede estar vacío y el valor debe
+                            ser superior
+                            a 0.</p>
+                    </div>
+                    <div class="form__button-section">
+                        <button class="form__button-section__button" type="submit" id="boton-ingresar-perro">Ingresar
+                            perro</button>
+                    </div>
+                </form>
+            </div>
+            <!--FICHA PERRO INGRESADO-->
+            <div class="ficha-section">
+                <div class="hidden ficha" id="ficha-perro">
+                    <div class="ficha__image">
+                        <div id="foto-random-perro"></div>
+                    </div>
+                    <h1 class="ficha__title" id="nombre-perro-ficha"></h1>
+                    <div class="flex">
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Edad: </p>
+                            <p class="ficha__text" id="edad-perro-ficha"></p>
+                            <p class="ficha__text"> año/s</p>
+                        </div>
+                        <div class="ficha__secciones">
+                            <p class="ficha__text ficha__text--static">Peso: </p>
+                            <p class="ficha__text" id="peso-perro-ficha"></p>
+                            <p class="ficha__text"> kilo/s</p>
+                        </div>
+                    </div>
+                    <div class="ficha__secciones">
+                        <p class="ficha__text ficha__text--static">Raza: </p>
+                        <p class="ficha__text" id="raza-perro-ficha"></p>
+                    </div>
+                    <div class="ficha__secciones">
+                        <p class="ficha__text ficha__text--static">Fecha de ingreso: </p>
+                        <p class="ficha__text" id="fecha-ingreso-perro-ficha"></p>
+                    </div>
+                    <div class="ficha__button-section">
+                        <button class="ficha__button-section__button" id="archivar-ficha">Archivar ficha</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--MODAL SUCCES-->
+        <div class="hidden modal" id="popup-modal-succes">
+            <div class="modal__01">
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <button type="button" class="modal__header__button" id="modal-succes-header-button"
+                            data-modal-toggle="popup-modal-succes">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal__body">
+                        <h3 class="modal__body__title">El perro ha sido dado de alta en la perrera correctamente</h3>
+                        <button type="button" class="modal__body__button" id="modal-succes-body-button"
+                            data-modal-toggle="popup-modal-succes">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--MODAL FAIL-->
+        <div class="hidden modal" id="popup-modal-fail">
+            <div class="modal__01">
+                <div class="modal__content">
+                    <div class="modal__header">
+                        <button type="button" class="modal__header__button" id="modal-fail-header-button"
+                            data-modal-toggle="popup-modal-fail">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal__body">
+                        <h3 class="modal__body__title">Este perro ya existe</h3>
+                        <button type="button" class="modal__body__button" id="modal-fail-body-button"
+                            data-modal-toggle="popup-modal-fail">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--FIN DIV PADRE-->
+    <footer class="footer">
+        <p class="footer__text">&#169 2021 Rafel Bibiloni Coll</p>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.0.22"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "json-server": "^0.17.0"
+  }
+}
