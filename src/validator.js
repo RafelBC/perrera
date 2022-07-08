@@ -1,4 +1,5 @@
-import {borrarModal, /*cerrarModal,*/ archivarFicha, rellenarFicha, obtenerImagenPerro, formularioIngresoPerro, pintarModal, crearNuevoPerro} from './main.js'
+import {borrarModal, rellenarFicha, formularioIngresoPerro, pintarModal, crearNuevoPerro} from './main.js'
+//CONTROLADOR CAMPOS FORMULARIO INGRESO PERRO---------------------------------------------------------------------------------------------------------------------------------------
 
 const camposFormularioIngresoPerro = {
     nombre: false,
@@ -6,6 +7,8 @@ const camposFormularioIngresoPerro = {
     raza: false,
     peso: false
 }
+
+//CONTROLADOR CAMPOS FORMULARIO ADOPCIÓN DUEÑO---------------------------------------------------------------------------------------------------------------------------------------
 
 const camposFormularioAdopcionDueno = {
     nombre: false,
@@ -16,6 +19,18 @@ const camposFormularioAdopcionDueno = {
     codigoPostal: false,
     ciudad: false
 }
+
+//COMPROBAR CONTROLADORES CAMPOS FORMULARIOS---------------------------------------------------------------------------------------------------------------------------------------
+
+const estadoCamposFormularios = (formularioAComprobar) => {
+    for (let i in formularioAComprobar){
+        if(formularioAComprobar[i] == false){
+            return false;
+        }
+    }return true;
+}
+
+//DISTRIBUIDOR DE ELEMENTO DEL FORMULARIO A VALIDAR---------------------------------------------------------------------------------------------------------------------------------------
 
 const validarFormulario = (e) => {
     console.log("Esto es " + e.target.name)
@@ -53,15 +68,17 @@ const validarFormulario = (e) => {
     }
 }
 
+//PATRONES PARA COMPROBAR CONTENIDO CAMPOS FORMULARIOS---------------------------------------------------------------------------------------------------------------------------------------
+
 const patternText = new RegExp(/^[A-ZÀÈÒÁÉÍÓÚa-zàèòñáéíóú\s\/]+$/);
 const patternNumber = new RegExp('^[0-9]+');
 const patternEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 const patternPhone = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}$/im);
 const patternCodigoPostal = new RegExp('[0-9]{5}');
-const patternAddress = new RegExp(/^[A-ZÀÈÒÁÉÍÓÚa-zàèòñáéíóú0-9\s\d\/]+$/);//No permite comas, guiones...
+const patternAddress = new RegExp(/^[A-ZÀÈÒÁÉÍÓÚa-zàèòñáéíóú0-9,\s\d\/]+$/);
 
+//COMPROBAR CAMPOS FORMULARIOS SEGÚN PATRÓN---------------------------------------------------------------------------------------------------------------------------------------
 const inputBaseValidator = (element, selector) => {
-
     const patternToValidate = ['peso', 'edad'].includes(selector) ? patternNumber 
         : ['telefono-dueno'].includes(selector) ? patternPhone
         : ['email-dueno'].includes(selector) ? patternEmail
@@ -89,21 +106,7 @@ const inputBaseValidator = (element, selector) => {
     }
 }
 
-/* const inputBaseValidator = (element, selector) => {
-
-    const patternToValidate = ['peso', 'edad'].includes(selector) ? patternNumber : patternText;
-    let input = document.getElementById(element);
-    const elementToBeModify = document.querySelector(`#grupo__${selector} .form__text-error`)
-    if (input.value.trim() == "" || input.value.trim() == 0 || !patternToValidate.test(input.value)){
-        input.style.borderColor = "#E22E11";
-        elementToBeModify.classList.add("form__text-error--activo");
-        camposFormularioIngresoPerro[selector] = false;
-    } else {
-        input.style.borderColor = "#D1D5DB";
-        elementToBeModify.classList.remove("form__text-error--activo");
-        camposFormularioIngresoPerro[selector] = true;
-    }
-} */
+//TRANSICIÓN DE LOS ELEMENTOS A VALIDAR HACIA LA FUNCIÓN QUE LOS COMPRUEBA SEGÚN LOS PARÁMETROS QUE LES PASAMOS EN CADA CASO---------------------------------------------------------------------------------------------------------------------------------------
 
 const validateDogName = () => inputBaseValidator('name-dog', 'nombre');
 const validateDogWeight = () => inputBaseValidator('weight-dog', 'peso');
@@ -129,32 +132,45 @@ const validateCPOwner = () => inputBaseValidator('c-p-owner', 'codigo-postal-due
 const validateCityOwner = () => inputBaseValidator('city-owner', 'ciudad-dueno');
 
 
-//Validar si el perro a ingresar ya existe en la BBDD-------------------------------------------------------------------
+//VALIDAR SI EL PERRO A INGRESAR YA EXISTE EN LA BBDD-------------------------------------------------------------------
 
 const validateNewDogExists = async (nuevoPerroNombre, nuevoPerroEdad, nuevoPerroRaza, nuevoPerroPeso) => {
     try {
-        const listadoPerrosExistentes = await axios.get("http://localhost:3000/dogs");
+        const listadoPerrosExistentes = await axios.get("http://localhost:3000/dogs?estadoAdopcion=false");
         let totalPerros = listadoPerrosExistentes.data;
+        let nuevoPerro = {
+            nombre: nuevoPerroNombre,
+            edad: nuevoPerroEdad,
+            raza: nuevoPerroRaza,
+            peso: nuevoPerroPeso
+        };
         for (let perroIndice of totalPerros){
-            if (perroIndice.nombre == nuevoPerroNombre && perroIndice.edad == nuevoPerroEdad && perroIndice.raza == nuevoPerroRaza && perroIndice.peso == nuevoPerroPeso){
-                document.getElementById("popup-modal-fail").classList.remove("hidden");
-                document.getElementById("popup-modal-fail").classList.add("block");
-                const botonHeaderModalFail = document.getElementById("modal-fail-header-button");
-                const botonBodyModalFail = document.getElementById("modal-fail-body-button");
-                botonHeaderModalFail.addEventListener("click", borrarModal);
-                botonBodyModalFail.addEventListener("click", borrarModal);
-                formularioIngresoPerro.reset();
-                return;
+            if (objectsCompare(nuevoPerro, perroIndice)){
+                return false;//Los dos perros son iguales
             }
         }
-        rellenarFicha();
-        await obtenerImagenPerro(nuevoPerroNombre, nuevoPerroEdad, nuevoPerroRaza, nuevoPerroPeso);
-        formularioIngresoPerro.reset();
-        pintarModal();
+        return true;
     } catch (error){
         console.log(error);
         alert(error.message + ". Ha habido un problema con la solicitud de datos.");
     }
 }
 
-export {validarFormulario,  validateDogAge, validateDogWeight, validateDogName, validarSelectorRazas, camposFormularioIngresoPerro, camposFormularioAdopcionDueno, validateNewDogExists}
+//COMPARAR OBJETOS (PERROS)-------------------------------------------------------------------
+
+const objectsCompare = (object1, object2) => {
+    let object1_keys = Object.keys(object1);
+    let counterEquals = 0;
+    for (let k of object1_keys){
+        if (object1[k] === object2[k]){
+            counterEquals += 1;
+        }
+    }
+    if(counterEquals==object1_keys.length){
+        return true;//Los dos perros son iguales
+      }else{
+        return false;//Los dos perros son diferentes
+      }
+}
+
+export {validarFormulario,  validateDogAge, validateDogWeight, validateDogName, validarSelectorRazas, camposFormularioIngresoPerro, camposFormularioAdopcionDueno, validateNewDogExists, estadoCamposFormularios}

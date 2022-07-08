@@ -214,6 +214,10 @@
     @apply overflow-y-auto overflow-x-hidden fixed right-0 top-1/4 left-1/4 z-50 justify-center items-center;
 }
 
+.modal-wrapper {
+    @apply bg-black/50 fixed top-0 left-0 w-full h-full;
+}
+
 .modal__form {
     @apply overflow-y-auto overflow-x-hidden fixed top-1/4 left-1/4 z-50 justify-center items-center;
 }
@@ -298,7 +302,7 @@
 }
 
 .ficha__secciones-home {
-    @apply py-2.5 mx-4;
+    @apply flex py-2.5 mx-4;
 }
 
 .ficha__text {

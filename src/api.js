@@ -1,4 +1,6 @@
 
+//ACTUALIZAR PERRO ADOPTADO Y DUEÑO---------------------------------------------------------------------------------------------------------------------------------------
+
 const actualizarAdopcionPerro = async (duenoACargar, perroAModificar) => {
     try {
         let horaAdopcion = conseguirHoraYFecha();
@@ -7,7 +9,7 @@ const actualizarAdopcionPerro = async (duenoACargar, perroAModificar) => {
             fechaAdopcion: horaAdopcion,
             dueño: duenoACargar
         });
-        alert(`El perro ${perroCargado.nombre} ha sido adoptado`);
+        //alert(`El perro ${perroCargado.nombre} ha sido adoptado`);
         return;
     } catch (error){
         console.log(error);
@@ -15,7 +17,7 @@ const actualizarAdopcionPerro = async (duenoACargar, perroAModificar) => {
     }
 }
 
-//OBTENER PERROS ADOPTADOS API---------------------------------------------------------------------------------------------------------------------------------------
+//OBTENER PERROS ADOPTADOS Y ORDENADOS POR FECHA DE ADOPCIÓN MÁS RECIENTE---------------------------------------------------------------------------------------------------------------------------------------
 
 const listaPerrosYaAdoptados = async () => {
     try {
@@ -36,7 +38,7 @@ const listaPerrosYaAdoptados = async () => {
     }
 }
 
-//OBTENER PERROS DISPONIBLES ADOPCIÓN API----------------------------------------------------------------------------------------------------------------------------
+//OBTENER PERROS DISPONIBLES ADOPCIÓN Y ORDENADOS POR FECHA DE INGRESO MÁS ANTIGUO----------------------------------------------------------------------------------------------------------------------------
 
 const listaPerrosDisponiblesAdopcion = async () => {
     try {
@@ -75,4 +77,17 @@ const obtenerRazasPerro = async (selectorDeRazas) => {
     }
 }
 
-export {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion}
+//OBTENER IMAGEN PERRO--------------------------------------------------------------------------------------------------------------------------------------------
+
+const obtenerImagenPerro = async (razaPerro) => {
+    try {
+        let razaRutaURL = razaPerro.value.replace(" ","/");
+        const respuestaImagen = await axios.get(`https://dog.ceo/api/breed/${razaRutaURL}/images/random`);
+        return respuestaImagen;
+    } catch (error){
+        console.log(error);
+        alert(error.message + ". Ha habido un problema con la solicitud de datos.");
+    }
+}
+
+export {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion, obtenerImagenPerro}

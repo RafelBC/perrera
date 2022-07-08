@@ -1190,6 +1190,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow-x: hidden;
 }
 
+.modal-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 0.5);
+}
+
 .modal__form {
   position: fixed;
   top: 25%;
@@ -1545,6 +1554,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ficha__secciones-home {
   margin-left: 1rem;
   margin-right: 1rem;
+  display: flex;
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }

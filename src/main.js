@@ -1,6 +1,6 @@
 
-import {validarFormulario, validateDogAge, validateDogName, validarSelectorRazas, validateDogWeight, camposFormularioIngresoPerro, camposFormularioAdopcionDueno, validateNewDogExists} from './validator.js'
-import {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion} from './api.js'
+import {validarFormulario, validateDogAge, validateDogName, validarSelectorRazas, validateDogWeight, camposFormularioIngresoPerro, camposFormularioAdopcionDueno, validateNewDogExists, estadoCamposFormularios} from './validator.js'
+import {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion, obtenerImagenPerro} from './api.js'
 //OBTENER LISTA RAZAS API--------------------------------------------------------------------------------------------------------------------------------------------
 
 let breedSelector = document.getElementById("breed-selection");
@@ -11,10 +11,10 @@ if (breedSelector){
 //CARGA PERRO EN BBDD-----------------------------------------------------------------------------------------------------------------------------------------
 
 const cargarNuevoPerro = async (nuevoPerro) => {
+    console.log("He entrado en cargarNuevoPerro");
     try {
-        const perroCargado = await axios.post("http://localhost:3000/dogs", nuevoPerro);
-        alert(`El perro ${perroCargado.nombre} ha sido cargado`);
-        return;
+        await axios.post("http://localhost:3000/dogs", nuevoPerro);
+        console.log("Ya he guardado el perro");
     } catch (error){
         console.log(error);
         alert(error.message + ". Ha habido un problema con la carga de datos.");
@@ -27,31 +27,10 @@ const obtenerPerrosAdoptados = async () => {
     try {
         //Obtenemos la lista de perros adoptados y los ordenamos por fecha de adopción más reciente a menos reciente
         const perrosAdoptados = await listaPerrosYaAdoptados();
-        const variablePerrosAPintar = perrosAdoptados.data.length > 3 ? 3 : perrosAdoptados.data.length;
-        for (let i=0; i<variablePerrosAPintar; i++){
-            //Clonamos la ficha de muestra para rellenarla luego con la info de los 3 últimos perros y la colocamos en su sitio
-            const elementoAClonar = document.getElementById("ficha-perro-adoptado");
-            if(elementoAClonar){
-                const clon = elementoAClonar.cloneNode(true);
-                clon.id = `ficha-perro-adoptado-0${i}`;
-                const seccionPerrosAdoptados = document.getElementById("seccion-perros-adoptados");
-                seccionPerrosAdoptados.appendChild(clon);
-                //Creamos el elemento imagen, con su clase y su src
-                const imagenPerroAdoptado = document.createElement("img");
-                imagenPerroAdoptado.classList.add("card__image-content__image");
-                imagenPerroAdoptado.src = perrosAdoptados.data[i].imagen;
-                //Añadimos la info en cada parte de la ficha
-                document.querySelector(`#ficha-perro-adoptado-0${i} #foto-perro-adoptado-00`).appendChild(imagenPerroAdoptado);
-                document.querySelector(`#ficha-perro-adoptado-0${i} #nombre-perro-ficha-adoptado-00`).innerHTML = perrosAdoptados.data[i].nombre;
-                document.querySelector(`#ficha-perro-adoptado-0${i} #edad-perro-ficha-adoptado-00`).innerHTML = perrosAdoptados.data[i].edad;
-                document.querySelector(`#ficha-perro-adoptado-0${i} #raza-perro-ficha-adoptado-00`).innerHTML = perrosAdoptados.data[i].raza;
-                document.querySelector(`#ficha-perro-adoptado-0${i} #peso-perro-ficha-adoptado-00`).innerHTML = perrosAdoptados.data[i].peso;
-                document.querySelector(`#ficha-perro-adoptado-0${i} #fecha-ingreso-perro-ficha-adoptado-00`).innerHTML = perrosAdoptados.data[i].fechaAdopcion;
-            }
-        }
-        if (document.getElementById("ficha-perro-adoptado")) {
-            document.getElementById("ficha-perro-adoptado").classList.add("hidden");//Ocultamos la ficha que usamos de ejemplo para la clonación
-        }
+        const numeroDePerrosAdoptadosAPintar = perrosAdoptados.data.length > 3 ? 3 : perrosAdoptados.data.length;
+        const elementoAClonar = document.getElementById("ficha-perro-adoptado");
+        const seccionPerrosAdoptados = document.getElementById("seccion-perros-adoptados");
+        rellenarFichasPerros(numeroDePerrosAdoptadosAPintar, perrosAdoptados, elementoAClonar, seccionPerrosAdoptados);
     } catch (error){
         console.log(error);
         alert(error.message + ". Ha habido un problema con la solicitud de datos.");
@@ -66,32 +45,10 @@ const obtenerPerrosDisponiblesAdopcion = async () => {
     try {
         //Obtenemos la lista de perros no adoptados y los ordenamos por fecha de admisión más antigua a más actual
         const perrosDisponiblesAdopcion = await listaPerrosDisponiblesAdopcion();
-        for (let i=0; i<perrosDisponiblesAdopcion.data.length; i++){
-            //Clonamos la ficha de muestra para rellenarla luego con la info de los perros disponibles para adopción y la colocamos en su sitio
-            if (document.getElementById("ficha-perro-disponible-adopcion")) {
-                const perroNoAdoptadoAClonar = document.getElementById("ficha-perro-disponible-adopcion");
-                const perroNoAdoptadoClon = perroNoAdoptadoAClonar.cloneNode(true);
-                perroNoAdoptadoClon.id = `ficha-perro-disponible-adopcion-0${i}`;
-                //perroNoAdoptadoClon.button.id = `adoptar-perro`
-                const seccionPerrosAdoptados = document.getElementById("seccion-perros-disponibles-adopcion");
-                seccionPerrosAdoptados.appendChild(perroNoAdoptadoClon);
-                //Creamos el elemento imagen, con su clase y su src
-                const imagenPerroAdoptado = document.createElement("img");
-                imagenPerroAdoptado.classList.add("card__image-content__image");
-                imagenPerroAdoptado.src = perrosDisponiblesAdopcion.data[i].imagen;
-                //Añadimos la info en cada parte de la ficha
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #foto-perro-disponible-adopcion-00`).appendChild(imagenPerroAdoptado);
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #nombre-perro-ficha-disponible-adopcion-00`).innerHTML = perrosDisponiblesAdopcion.data[i].nombre;
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #edad-perro-ficha-disponible-adopcion-00`).innerHTML = perrosDisponiblesAdopcion.data[i].edad;
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #raza-perro-ficha-disponible-adopcion-00`).innerHTML = perrosDisponiblesAdopcion.data[i].raza;
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #peso-perro-ficha-disponible-adopcion-00`).innerHTML = perrosDisponiblesAdopcion.data[i].peso;
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #fecha-ingreso-perro-ficha-disponible-adopcion-00`).innerHTML = perrosDisponiblesAdopcion.data[i].fechaIngreso;
-                document.querySelector(`#ficha-perro-disponible-adopcion-0${i} #identificador`).innerHTML = perrosDisponiblesAdopcion.data[i].id;
-            }
-        }
-        if (document.getElementById("ficha-perro-disponible-adopcion")) {
-            document.getElementById("ficha-perro-disponible-adopcion").classList.add("hidden");//Ocultamos la ficha que usamos de ejemplo para la clonación
-        }
+        const numeroDePerrosDisponiblesAPintar = perrosDisponiblesAdopcion.data.length;
+        const perroNoAdoptadoAClonar = document.getElementById("ficha-perro-disponible");
+        const seccionPerrosAdoptados = document.getElementById("seccion-perros-disponibles");
+        rellenarFichasPerros(numeroDePerrosDisponiblesAPintar, perrosDisponiblesAdopcion, perroNoAdoptadoAClonar, seccionPerrosAdoptados);
     } catch (error){
         console.log(error);
         alert(error.message + ". Ha habido un problema con la solicitud de datos.");
@@ -99,103 +56,81 @@ const obtenerPerrosDisponiblesAdopcion = async () => {
 }
 obtenerPerrosDisponiblesAdopcion();
 
-//FORMULARIO DUEÑO-----------------------------------------------------------------------------------------------------------
+//RELLENAR LAS FICHAS DE PERROS ADOPTADOS Y DE DISPONIBLES PARA LA ADOPCIÓN--------------------------------------------------------------------------------------------------------------------------
 
-let botonAdoptarPerro = document.querySelector("#modal-adoption-body-button");
-
-const inputsFormularioDueno = document.querySelectorAll("#formulario-adopcion-dueno input");
-
-inputsFormularioDueno.forEach((input) => {
-    input.addEventListener("keyup", validarFormulario);
-    input.addEventListener("blur", validarFormulario);
-})
-
-//Comprobación de los campos al hacer click al botón de enviar
-if (botonAdoptarPerro){
-    botonAdoptarPerro.addEventListener("click", validarFormulario);
+const rellenarFichasPerros = (numeroDePerros, listadoDePerros, origenFichaClonar, seccionDondeClonar) => {
+    for (let i=0; i<numeroDePerros; i++){
+        if(origenFichaClonar){
+            const clon = origenFichaClonar.cloneNode(true);//Clonamos la ficha de muestra para rellenarla luego con la info de los perros
+            clon.id = `${origenFichaClonar.id}-0${i}`;//Modificamos el ID de la ficha clonada para poder ir numerando cada copia
+            seccionDondeClonar.appendChild(clon);//Colocamos la ficha clonada en su sitio
+            const imagenPerro = document.createElement("img");//Creamos el elemento imagen
+            imagenPerro.classList.add("card__image-content__image");//Añadimos la classe que deseada a la imagen
+            imagenPerro.src = listadoDePerros.data[i].imagen;//Añadimos la source a la imagen
+            //Añadimos la info extraída de la BBDD en cada parte de la ficha
+            document.querySelector(`#${origenFichaClonar.id}-0${i} #foto-${origenFichaClonar.id}-00`).appendChild(imagenPerro);
+            document.querySelector(`#${origenFichaClonar.id}-0${i} #nombre-${origenFichaClonar.id}-00`).innerHTML = listadoDePerros.data[i].nombre;
+            document.querySelector(`#${origenFichaClonar.id}-0${i} #edad-${origenFichaClonar.id}-00`).innerHTML = listadoDePerros.data[i].edad;
+            document.querySelector(`#${origenFichaClonar.id}-0${i} #raza-${origenFichaClonar.id}-00`).innerHTML = listadoDePerros.data[i].raza;
+            document.querySelector(`#${origenFichaClonar.id}-0${i} #peso-${origenFichaClonar.id}-00`).innerHTML = listadoDePerros.data[i].peso;       
+            if(seccionDondeClonar.id == "seccion-perros-disponibles"){
+                let fechaIngresoFormatoSimple = transformarFecha(listadoDePerros.data[i].fechaIngreso);
+                document.querySelector(`#${origenFichaClonar.id}-0${i} #fecha-ingreso-${origenFichaClonar.id}-00`).innerHTML = fechaIngresoFormatoSimple;
+            } else {
+                let fechaAdopcionFormatoSimple = transformarFecha(listadoDePerros.data[i].fechaAdopcion);
+                document.querySelector(`#${origenFichaClonar.id}-0${i} #fecha-adopcion-${origenFichaClonar.id}-00`).innerHTML = fechaAdopcionFormatoSimple;
+            }
+            if (document.querySelector(`#${origenFichaClonar.id}-0${i} #identificador`)){
+                document.querySelector(`#${origenFichaClonar.id}-0${i} #identificador`).innerHTML = listadoDePerros.data[i].id;//Esto solo está para perros para adoptar
+            }
+        }
+    }
+    if(origenFichaClonar){
+        origenFichaClonar.classList.add("hidden");//Ocultamos la ficha que usamos de ejemplo para la clonación
+    }
 }
 
-
-//FORMULARIO INGRESO-----------------------------------------------------------------------------------------------------------
+//IDENTIFICACIÓN Y CONTROL DE LOS ELEMENTOS DE LOS FORMULARIOS--------------------------------------------------------------------------------------------------------------------------------
 
 let razaPerro = document.getElementById("breed-selection");
 let nombrePerro = document.getElementById("name-dog");
 let edadPerro = document.getElementById("age-dog");
 let pesoPerro = document.getElementById("weight-dog");
 
-let botonIngresarPerro = document.querySelector("#boton-ingresar-perro");
+const inputsFormularioDueno = document.querySelectorAll("#formulario-adopcion-dueno input");
+const inputsFormularioPerro = document.querySelectorAll("#formulario-ingreso-perro input");
 
-const inputsFormulario = document.querySelectorAll("#formulario-ingreso-perro input");
-
-//Comprobación de los campos al levantar una tecla o al quitar el foco de un elemento
-inputsFormulario.forEach((input) => {
-    input.addEventListener("keyup", validarFormulario);
-    input.addEventListener("blur", validarFormulario);
-})
+//Comprobación de los inputs de los formularios al levantar una tecla o al quitar el foco de un elemento
+const todosInputsFormularios = [inputsFormularioDueno, inputsFormularioPerro];
+for (let cadaInput of todosInputsFormularios){
+    cadaInput.forEach((input) => {
+        input.addEventListener("keyup", validarFormulario);
+        input.addEventListener("blur", validarFormulario);
+    })
+}
+//Comprobación del selector de raza al aplicarle un cambio o quitar el foco; funciona diferente al resto de inputs
 if (razaPerro) {
     razaPerro.addEventListener("change", validarSelectorRazas);
     razaPerro.addEventListener("blur", validarSelectorRazas);
 }
 
 
-//Comprobación de los campos al hacer click al botón de enviar
-if (botonIngresarPerro) {
-    botonIngresarPerro.addEventListener("click", validarFormulario);
-    botonIngresarPerro.addEventListener("click", validarSelectorRazas);
-}
+//FICHA PERRO RECIEN ADOPTADO----------------------------------------------------------------------------------------------------------------
 
+const rellenarFicha = (respuestaImagen) => {
+    const imagen = document.createElement("img");
+    imagen.classList.add("ficha__image__content");
+    imagen.src = respuestaImagen.data.message;
+    document.querySelector("#foto-random-perro").appendChild(imagen);
 
-const pintarModal = () => { //SE POT OPTIMITZAR (amb es pintar modal-fail)
-    document.getElementById("popup-modal-succes").classList.remove("hidden");
-    document.getElementById("popup-modal-succes").classList.add("block");
-    const botonHeaderModal = document.getElementById("modal-succes-header-button");
-    const botonBodyModal = document.getElementById("modal-succes-body-button");
-    botonHeaderModal.addEventListener("click", borrarModal);
-    botonBodyModal.addEventListener("click", borrarModal);
-    setTimeout (borrarModal, 2000);
-}
-
-const borrarModal = () => { //SE POT OPTIMITZAR
-    if(document.getElementById("popup-modal-succes")){
-        document.getElementById("popup-modal-succes").classList.add("hidden");
-        document.getElementById("popup-modal-succes").classList.remove("block");
-    }
-    if(document.getElementById("popup-modal-fail")){
-        document.getElementById("popup-modal-fail").classList.add("hidden");
-        document.getElementById("popup-modal-fail").classList.remove("block");
-    }
-    if(document.getElementById("popup-modal-adoption")){
-        document.getElementById("popup-modal-adoption").classList.add("hidden");
-    }
-    
-}
-
-//FICHA PERRO----------------------------------------------------------------------------------------------------------------
-
-const obtenerImagenPerro = async (nuevoPerroNombre, nuevoPerroEdad, nuevoPerroRaza, nuevoPerroPeso) => {
-    try {
-        let razaRutaURL = razaPerro.value.replace(" ","/");
-        const respuestaImagen = await axios.get(`https://dog.ceo/api/breed/${razaRutaURL}/images/random`);
-        const imagen = document.createElement("img");
-        imagen.classList.add("ficha__image__content");
-        imagen.src = respuestaImagen.data.message;
-
-        crearNuevoPerro(nuevoPerroNombre, nuevoPerroEdad, nuevoPerroRaza, nuevoPerroPeso, respuestaImagen.data.message);
-        
-        document.querySelector("#foto-random-perro").appendChild(imagen);
-        document.getElementById("ficha-perro").classList.remove("hidden");
-    } catch (error){
-        console.log(error);
-        alert(error.message + ". Ha habido un problema con la solicitud de datos.");
-    }
-}
-
-const rellenarFicha = () => {
     document.getElementById("nombre-perro-ficha").innerHTML = nombrePerro.value;
     document.getElementById("edad-perro-ficha").innerHTML = edadPerro.value;
     document.getElementById("raza-perro-ficha").innerHTML = razaPerro.value;
     document.getElementById("peso-perro-ficha").innerHTML = pesoPerro.value;
-    document.getElementById("fecha-ingreso-perro-ficha").innerHTML = conseguirHoraYFecha();
+    let fechaYHoraActual = conseguirHoraYFecha();
+    let fechaTransformada = transformarFecha(fechaYHoraActual);
+    document.getElementById("fecha-ingreso-perro-ficha").innerHTML = fechaTransformada;
+    document.getElementById("ficha-perro").classList.remove("hidden");
 }
 
 const archivarFicha = () => {
@@ -206,8 +141,49 @@ const archivarFicha = () => {
 }
 
 if (document.getElementById("archivar-ficha")) {
-    const botonArchivarFicha = document.getElementById("archivar-ficha").addEventListener("click", archivarFicha);
+    const botonArchivarFicha = document.getElementById("archivar-ficha");
+    botonArchivarFicha.addEventListener("click", archivarFicha);
 }
+
+//FUNCIÓN QUE PINTA LOS MODALES------------------------------------------------------------------------------------------------------
+
+const pintarModal = (popupType) => {
+    document.getElementById(popupType).classList.remove("hidden");
+    document.getElementById(popupType).classList.add("block");
+    const botonHeaderModal = document.getElementById(`${popupType}-header-button`);
+    const botonBodyModal = document.getElementById(`${popupType}-body-button`);
+    botonHeaderModal.addEventListener("click", borrarModal);
+    botonBodyModal.addEventListener("click", borrarModal);
+    setTimeout (borrarModal, 2000);
+}
+
+//FUNCIÓN QUE BORRA LOS MODALES------------------------------------------------------------------------------------------------------
+
+const borrarModal = () => {
+    const popupTypeToDelete = ['popup-modal-succes', 'popup-modal-fail', 'popup-modal-adoption'];
+    for (let i of popupTypeToDelete){
+        if (document.getElementById(i)){
+            document.getElementById(i).classList.add("hidden");
+            document.getElementById(i).classList.remove("block");
+        }
+    }
+}
+
+//FUNCIÓN PARA CONSEGUIR HORA Y FECHA------------------------------------------------------------------------------------------------------
+
+const conseguirHoraYFecha = () => {
+    let hoy = new Date();
+    return hoy;
+}
+
+//FUNCIÓN PARA TRANSFORMAR FECHA EN FORMATO MÁS LEIBLE------------------------------------------------------------------------------------------------------
+
+const transformarFecha = (horaYFechaATransformar) => {
+    let horaYFechaFormatoDate = new Date (horaYFechaATransformar);
+    let fechaFormatoLeible = horaYFechaFormatoDate.getDate() + "-" + (horaYFechaFormatoDate.getMonth()+1) + "-" + horaYFechaFormatoDate.getFullYear();
+    return fechaFormatoLeible
+}
+
 
 //CLASES PERRO Y DUENO----------------------------------------------------------------------------------------------
 /* class Perro {
@@ -260,13 +236,7 @@ class Dueno {
     }
 }
 
-const conseguirHoraYFecha = () => {
-    let hoy = new Date();
-    let fecha = hoy.getDate() + "-" + (hoy.getMonth()+1) + "-" + hoy.getFullYear();
-    let hora = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
-    let fechaYhora = fecha + " " + hora;
-    return fechaYhora;
-}
+//CREAR UN NUEVO PERRO----------------------------------------------------------------------------------------------
 
 const crearNuevoPerro = (nuevoNombre, nuevoEdad, nuevoRaza, nuevoPeso, nuevoImagen) => {
     let nuevoFechaIngreso = conseguirHoraYFecha();
@@ -274,23 +244,43 @@ const crearNuevoPerro = (nuevoNombre, nuevoEdad, nuevoRaza, nuevoPeso, nuevoImag
     let nuevoFechaAdopcion = "";
     let nuevoDueño = {};
     let nuevoPerro = new Perro (nuevoNombre, nuevoEdad, nuevoRaza, nuevoPeso, nuevoImagen, nuevoFechaIngreso, nuevoEstadoAdopcion, nuevoFechaAdopcion, nuevoDueño);
-    cargarNuevoPerro(nuevoPerro);
+    return nuevoPerro;
 }
 
 //COMPROBACIÓN Y SUBMIT INGRESO PERRO----------------------------------------------------------------------------------------------
-
-const formularioIngresoPerro = document.getElementById("formulario-ingreso-perro");
-if (formularioIngresoPerro){
-    formularioIngresoPerro.addEventListener("submit", async(e) => {
-        e.preventDefault();
-        if (camposFormularioIngresoPerro.nombre && camposFormularioIngresoPerro.edad && camposFormularioIngresoPerro.raza && camposFormularioIngresoPerro.peso){
-            await validateNewDogExists(nombrePerro.value, edadPerro.value, razaPerro.value, pesoPerro.value);
-            archivarFicha();
+const pruebaPerro = async (e) => {
+    e.preventDefault();
+    try {
+        //e.preventDefault();
+        if (estadoCamposFormularios(camposFormularioIngresoPerro)) {//True = Los campos del fromulario son correctos
+            if (await validateNewDogExists(nombrePerro.value, edadPerro.value, razaPerro.value, pesoPerro.value)) {//True = El nuevo perro no existe en la BBDD
+                let imagenParaElNuevoPerro = await obtenerImagenPerro(razaPerro);//Obtenemos la imagen para el nuevo perro a partir de la raza introducida en el formulario
+                let nuevoPerroCreado = crearNuevoPerro(nombrePerro.value, edadPerro.value, razaPerro.value, pesoPerro.value, imagenParaElNuevoPerro.data.message);//Creamos el nuevo perro con toda la información que tenemos
+                await cargarNuevoPerro(nuevoPerroCreado);//Cargamos el perro que hemos creado en la BBDD
+                rellenarFicha(imagenParaElNuevoPerro);//Rellenamos la ficha pasandole la imagen obtenida y la pintamos
+                pintarModal("popup-modal-succes");//Pintamos el modal de éxito
+            } else {//El perro sí existe en la BBDD y por lo tanto, no lo podemos crear
+                pintarModal("popup-modal-fail");//Pintamos el modal de error
+                //formularioIngresoPerro.reset();//Reseteamos los campos del formulario de ingreso para que vuelva a empezar el proceso de alta del perro
+            }
+            setTimeout(archivarFicha, 5000);//Hacemos que se borre automáticamente la ficha al cabo de 5 segundos
+            //formularioIngresoPerro.reset();//Reseteamos los campos del formulario de ingreso
+            //return false;
         } else {
             console.log("Error aquí" + camposFormularioIngresoPerro.nombre + camposFormularioIngresoPerro.edad + camposFormularioIngresoPerro.raza + camposFormularioIngresoPerro.peso);
         }
-    })
+    } catch (error) {
+        console.log(error);
+        alert(error.message + ". Ha habido un problema con la solicitud de datos.");
+    }
+
 }
+
+const formularioIngresoPerro = document.getElementById("formulario-ingreso-perro");
+if (formularioIngresoPerro) {
+    formularioIngresoPerro.addEventListener("submit", pruebaPerro);
+}
+
 
 //ADOPTAR PERRO------------------------------------------------------------------------------------------------------------------------
 
@@ -298,7 +288,6 @@ document.addEventListener("click", function(e){//Click en cualquiera de los boto
     if (e.target.className == "ficha__button-section__button"){
         let perroAAdoptar = e.target.parentElement.parentElement.parentElement.getAttribute("id");
         let identificadorPerroAdoptar = document.getElementById(`${perroAAdoptar}`).getElementsByTagName("span")[0].innerHTML;
-        //document.getElementById("popup-modal-adoption").classList.remove("hidden");
         comprobacionDuenoYAdopcion(identificadorPerroAdoptar);//AWAIT?
     }
 })
@@ -306,16 +295,18 @@ document.addEventListener("click", function(e){//Click en cualquiera de los boto
 //COMPROBACIÓN Y SUBMIT ADOPCIÓN PERRO----------------------------------------------------------------------------------------------
 
 const comprobacionDuenoYAdopcion = (identificadorPerro) => {
-    document.getElementById("popup-modal-adoption").classList.remove("hidden");
-    const botonHeaderModalAdopcion = document.getElementById("modal-adoption-header-button");
-    botonHeaderModalAdopcion.addEventListener("click", borrarModal);
-    const formularioAdopcionPerro = document.getElementById("modal-adoption-body-button");
-    if (formularioAdopcionPerro){
-        formularioAdopcionPerro.addEventListener("submit", (e)=> {
+    document.getElementById("popup-modal-adoption").classList.remove("hidden");//Muestra el modal al quitar la clase hidden
+    const botonHeaderModalAdopcion = document.getElementById("popup-modal-adoption-header-button");//Identificamos el botón del header del modal
+    botonHeaderModalAdopcion.addEventListener("click", borrarModal);//Añadimos un listener al botón antes identificado para cuando se haga click en él, se active la función que "borra" el modal
+    const formularioAdopcionPerro = document.getElementById("popup-modal-adoption-body-button");//Identificamos el botón que activa el envío
+    console.log("Antes de entrar en el IF");
+    if (formularioAdopcionPerro){//Si el botón de enviar el formulario existe, entonces podemos seguir con el proceso, ya que estamos en la página correcta
+        console.log("Después del IF");
+        formularioAdopcionPerro.addEventListener("submit", async(e) => {//ANTES ESTABA ASÍ:"async(e) =>"
             e.preventDefault();
+            alert("Estamos aquí");//NO LLEGAMOS AQUÍ, ¿POR QUÉ?
             console.log("He llegado aquí 3");
-            //validarFormulario(e);
-            if (camposFormularioAdopcionDueno.nombre && camposFormularioAdopcionDueno.apellidos && camposFormularioAdopcionDueno.telefono && camposFormularioAdopcionDueno.email && camposFormularioAdopcionDueno.direccion && camposFormularioAdopcionDueno.codigoPostal && camposFormularioAdopcionDueno.ciudad){
+            if (estadoCamposFormularios(camposFormularioAdopcionDueno)){
                 alert("Ojo");
                 let nombreDueno = document.getElementById("name-owner");
                 let apellidoDueno = document.getElementById("last-name-owner");
@@ -324,13 +315,13 @@ const comprobacionDuenoYAdopcion = (identificadorPerro) => {
                 let direccionDueno = document.getElementById("address-owner");
                 let codigoPostalDueno = document.getElementById("c-p-owner");
                 let ciudadDueno = document.getElementById("city-owner");
-                const perrosYaAdoptados = listaPerrosYaAdoptados();//AWAIT?
+                const perrosYaAdoptados = await listaPerrosYaAdoptados();//AWAIT?
                 for(let perroIndice of perrosYaAdoptados.data){
                     if(perroIndice.dueño.nombre == nombreDueno && perroIndice.dueño.apellidos == apellidoDueno && perroIndice.dueño.telefono == telefonoDueno && perroIndice.dueño.email == emailDueno && perroIndice.dueño.direccion == direccionDueno && perroIndice.dueño.codigoPostal == codigoPostalDueno && perroIndice.dueño.ciudad == ciudadDueno){
-                        alert("Ya tienes almenos un perro adoptado")
+                        alert("Ya tienes almenos un perro adoptado");
                     }else{
                         let nuevoDueno = new Dueno (nombreDueno, apellidoDueno, telefonoDueno, emailDueno, direccionDueno, codigoPostalDueno, ciudadDueno);
-                        actualizarAdopcionPerro(nuevoDueno, identificadorPerro);//AWAIT?
+                        await actualizarAdopcionPerro(nuevoDueno, identificadorPerro);//AWAIT?
                     }
             }
             //Hay que validar que no exista ya un perro con un dueño que coincida con estos datos para así pintar modal de recapacitación
@@ -369,4 +360,4 @@ if (formularioAdopcionPerro000){
 // }
 
 
-export {borrarModal, /*cerrarModal,*/ archivarFicha, rellenarFicha, obtenerImagenPerro, formularioIngresoPerro, pintarModal, crearNuevoPerro}
+export {borrarModal, archivarFicha, rellenarFicha, formularioIngresoPerro, pintarModal, crearNuevoPerro}

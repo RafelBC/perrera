@@ -26,6 +26,7 @@
               </div>
             </div>
           </nav>
+        <!--SECCIÓN LOGO-->
         <div class="flex">
             <div class="w-1/3">
                     <div>
@@ -42,73 +43,75 @@
                         </div>
                     </div>
             </div>
+            <!--SECCIÓN ÚLTIMOS PERROS ADOPTADOS-->
             <div class="card-adopted-section-home">
                 <h2 class="section-titles-pages">Últimos perros adoptados</h2>
                 <div class="flex" id="seccion-perros-adoptados">
                     <div id="ficha-perro-adoptado">
                         <div class="ficha-adoptados">
                             <div class="ficha__image">
-                                <div id="foto-perro-adoptado-00"></div>
+                                <div id="foto-ficha-perro-adoptado-00"></div>
                             </div>
-                            <h1 class="ficha__title" id="nombre-perro-ficha-adoptado-00"></h1>
+                            <h1 class="ficha__title" id="nombre-ficha-perro-adoptado-00"></h1>
                             <div class="flex">
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Edad: </p>
-                                <p class="ficha__text" id="edad-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text" id="edad-ficha-perro-adoptado-00"></p>
                                 <p class="ficha__text"> año/s</p>
                             </div>
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Peso: </p>
-                                <p class="ficha__text" id="peso-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text" id="peso-ficha-perro-adoptado-00"></p>
                                 <p class="ficha__text"> kilo/s</p>
                             </div>
                             </div>
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Raza: </p>
-                                <p class="ficha__text" id="raza-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text" id="raza-ficha-perro-adoptado-00"></p>
                             </div>
                             <div class="ficha__secciones-home">
                                 <p class="ficha__text ficha__text--static">Fecha de adopción: </p>
-                                <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text" id="fecha-adopcion-ficha-perro-adoptado-00"></p>
                             </div>
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Adoptado por: </p>
-                                <p class="ficha__text" id="fecha-ingreso-perro-ficha-adoptado-00"></p>
+                                <p class="ficha__text" id="nombre-dueno-ficha-perro-adoptado-00"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!--PERROS PARA ADOPTAR////////////////////////////////////////////////////////////////////////////////////////////////////-->
         <div class="adoption-section-home">
             <h2 class="section-titles-pages">Perros disponibles para la adopción</h2>
-            <div class="card-section-home" id="seccion-perros-disponibles-adopcion">
-                <div id="ficha-perro-disponible-adopcion">
+            <div class="card-section-home" id="seccion-perros-disponibles">
+                <div id="ficha-perro-disponible">
                     <div class="ficha-adoptados">
+                        <span class="hidden" id="identificador"></span>
                         <div class="ficha__image">
-                            <div id="foto-perro-disponible-adopcion-00"></div>
+                            <div id="foto-ficha-perro-disponible-00"></div>
                         </div>
-                        <h1 class="ficha__title" id="nombre-perro-ficha-disponible-adopcion-00"></h1>
+                        <h1 class="ficha__title" id="nombre-ficha-perro-disponible-00"></h1>
                         <div class="flex">
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Edad: </p>
-                                <p class="ficha__text" id="edad-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text" id="edad-ficha-perro-disponible-00"></p>
                                 <p class="ficha__text"> año/s</p>
                             </div>
                             <div class="ficha__secciones">
                                 <p class="ficha__text ficha__text--static">Peso: </p>
-                                <p class="ficha__text" id="peso-perro-ficha-disponible-adopcion-00"></p>
+                                <p class="ficha__text" id="peso-ficha-perro-disponible-00"></p>
                                 <p class="ficha__text"> kilo/s</p>
                             </div>
                         </div>
                         <div class="ficha__secciones">
                             <p class="ficha__text ficha__text--static">Raza: </p>
-                            <p class="ficha__text" id="raza-perro-ficha-disponible-adopcion-00"></p>
+                            <p class="ficha__text" id="raza-ficha-perro-disponible-00"></p>
                         </div>
                         <div class="ficha__secciones-home">
                             <p class="ficha__text ficha__text--static">Fecha de ingreso: </p>
-                            <p class="ficha__text" id="fecha-ingreso-perro-ficha-disponible-adopcion-00"></p>
+                            <p class="ficha__text" id="fecha-ingreso-ficha-perro-disponible-00"></p>
                         </div>
                         <div class="ficha__button-section">
                             <button class="ficha__button-section__button" id="adoptar-perro">Adoptar perro</button>
@@ -116,138 +119,112 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-golden-retriever-01.jpeg" alt="Golden Retriever">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Truc</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-mars"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">2</div>
-                        <div class="card__features-content__feature-years__text">años</div>
+        </div>
+        <!--MODAL ADOPCIÓN-->
+        <div class="hidden modal-wrapper" id="popup-modal-adoption">
+            <div class="modal__form">
+                <form class="modal__form__01">
+                    <div class="modal__content">
+                        <div class="modal__header">
+                            <button type="button" class="modal__header__button" id="popup-modal-adoption-header-button"
+                                data-modal-toggle="popup-modal-succes">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal__body" id="formulario-adopcion-dueno">
+                            <h3 class="modal__body__title">Información sobre el dueño/a necesaria para la adopción</h3>
+                            <div class="flex">
+                                <div class="modal__form__line" id="grupo__nombre-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="name-owner">Nombre </label>
+                                        <input class="form__text-box" type="text" name="name-owner" id="name-owner"
+                                            placeholder="Jon" required>
+                                    </div>
+                                    <p class="form__text-error" for="error-name-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        solo texto.
+                                    </p>
+                                </div>
+                                <div class="modal__form__line" id="grupo__apellidos-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="last-name-owner">Apellidos </label>
+                                        <input class="form__text-box" type="text" name="last-name-owner" id="last-name-owner"
+                                            placeholder="Doe" required>
+                                    </div>
+                                    <p class="form__text-error" for="error-last-name-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        solo texto.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="modal__form__line" id="grupo__telefono-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="telephone-owner">Teléfono </label>
+                                        <input class="form__text-box" type="tel" name="telephone-owner" id="telephone-owner"
+                                            pattern="[0-9]+" maxlength="9" placeholder="123 45 67 89" required>
+                                    </div>
+                                    <p class="form__text-error" for="error-telephone-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        solo números.
+                                    </p>
+                                </div>
+                                <div class="modal__form__line" id="grupo__email-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="email-owner">Email </label>
+                                        <input class="form__text-box" type="email" name="email-owner" id="email-owner"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="example@example.com"
+                                            required>
+                                    </div>
+                                    <p class="form__text-error" for="error-email-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        una dirección de email.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="modal__form__line" id="grupo__direccion-dueno">
+                                <div class="flex">
+                                    <label class="form__label-text" for="address-owner">Dirección </label>
+                                    <input class="form__text-box__address" type="text" name="address-owner" id="address-owner"
+                                        placeholder="Calle Wallaby, 42" required>
+                                </div>
+                                <p class="form__text-error" for="error-address-owner">El campo no puede estar vacío.
+                                </p>
+                            </div>
+                            <div class="flex">
+                                <div class="modal__form__line" id="grupo__codigo-postal-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="c-p-owner">Código Postal </label>
+                                        <input class="form__number-box__CP" type="number" name="c-p-owner" id="c-p-owner"
+                                            pattern="[0-9]{5}+" placeholder="01234" required>
+                                    </div>
+                                    <p class="form__text-error" for="error-c-p-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        solo números.
+                                    </p>
+                                </div>
+                                <div class="modal__form__line" id="grupo__ciudad-dueno">
+                                    <div>
+                                        <label class="form__label-text" for="city-owner">Ciudad </label>
+                                        <input class="form__text-box__city" type="text" name="city-owner" id="city-owner"
+                                            pattern="[A-ZÀÈÒÁÉÍÓÚa-zàèòñáéíóú\s]+" placeholder="Sidney" required>
+                                    </div>
+                                    <p class="form__text-error" for="error-city-owner">El campo no puede estar vacío y debe
+                                        contener
+                                        solo texto.
+                                    </p>
+                                </div>
+                            </div>
+                            <button type="submit" class="modal__body__button"
+                                id="popup-modal-adoption-body-button">Aceptar</button>
+                        </div>
                     </div>
-                    <span class="card__features-content__feature-breed">Golden Retriever</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--yes"></span>
-                </div>
+                </form>
             </div>
-            <div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-beagle-01.jpeg" alt="Beagle">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Toby</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-mars"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">1</div>
-                        <div class="card__features-content__feature-years__text">años</div>
-                    </div>
-                    <span class="card__features-content__feature-breed">Beagle</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--yes"></span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-border-collie-01.jpeg" alt="Border Collie">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Lamby</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-venus"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">3</div>
-                        <div class="card__features-content__feature-years__text">años</div>
-                    </div>
-                    <span class="card__features-content__feature-breed">Border Collie</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--no"></span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-brako-de-weimar-01.jpeg" alt="Brako de Weimar">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Brusca</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-venus"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">3</div>
-                        <div class="card__features-content__feature-years__text">años</div>
-                    </div>
-                    <span class="card__features-content__feature-breed">Brako de Weimar</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--yes"></span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-labrador-01.jpeg" alt="Labrador">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Trosky</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-mars"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">3,5</div>
-                        <div class="card__features-content__feature-years__text">años</div>
-                    </div>
-                    <span class="card__features-content__feature-breed">Labrador</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--yes"></span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card__image-content">
-                    <img class="card__image-content__image" src="./perro-rough-collie-01.jpeg" alt="Rough Collie">
-                </div>
-                <div class="card__text-content">
-                    <div class="card__text-content__title">Lassie</div>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__feature-gender">
-                        <i class="fa-solid fa-venus"></i>
-                    </span>
-                    <div class="card__features-content__feature-years">
-                        <div class="card__features-content__feature-years__number">4</div>
-                        <div class="card__features-content__feature-years__text">años</div>
-                    </div>
-                    <span class="card__features-content__feature-breed">Rough Collie</span>
-                </div>
-                <div class="flex">
-                    <span class="card__features-content__adoption-text">Disponibilidad para la adopción:</span>
-                    <span class="card__features-content__adoption-boolean--no"></span>
-                </div>
-            </div>-->
         </div>
     </div><!--FIN DIV PADRE-->
     <footer class="footer">
