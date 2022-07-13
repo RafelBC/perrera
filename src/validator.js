@@ -1,4 +1,4 @@
-import {borrarModal, rellenarFicha, formularioIngresoPerro, pintarModal, crearNuevoPerro} from './main.js'
+//import {borrarModal, rellenarFicha, formularioIngresoPerro, pintarModal, crearNuevoPerro} from './main.js'
 //CONTROLADOR CAMPOS FORMULARIO INGRESO PERRO---------------------------------------------------------------------------------------------------------------------------------------
 
 const camposFormularioIngresoPerro = {

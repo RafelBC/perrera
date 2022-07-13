@@ -90,4 +90,17 @@ const obtenerImagenPerro = async (razaPerro) => {
     }
 }
 
-export {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion, obtenerImagenPerro}
+//CARGA PERRO EN BBDD-----------------------------------------------------------------------------------------------------------------------------------------
+
+const cargarNuevoPerro = async (nuevoPerro) => {
+    console.log("He entrado en cargarNuevoPerro");
+    try {
+        await axios.post("http://localhost:3000/dogs", nuevoPerro);
+        console.log("Ya he guardado el perro");
+    } catch (error){
+        console.log(error);
+        alert(error.message + ". Ha habido un problema con la carga de datos.");
+    }
+}
+
+export {actualizarAdopcionPerro, listaPerrosYaAdoptados, obtenerRazasPerro, listaPerrosDisponiblesAdopcion, obtenerImagenPerro, cargarNuevoPerro}

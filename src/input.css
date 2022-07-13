@@ -223,7 +223,7 @@
 }
 
 .modal__01 {
-    @apply relative px-4 w-full max-w-md h-full md:h-auto;
+    @apply relative px-4 w-full max-w-md h-full md:h-auto bg-white rounded-lg shadow dark:bg-gray-700;
 }
 
 .modal__form__01 {
@@ -278,7 +278,7 @@
 }
 
 .ficha {
-    @apply w-1/2 rounded shadow-lg px-8 py-8 bg-white;
+    @apply rounded shadow-lg px-8 py-8 bg-white;
 }
 
 .ficha-adoptados {
